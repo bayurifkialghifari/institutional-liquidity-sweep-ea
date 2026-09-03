@@ -1,4 +1,4 @@
-#property copyright "OpenAI"
+#property copyright "Institutional Liquidity Sweep EA"
 #property version   "1.00"
 #property strict
 #property description "Asian session liquidity sweep with MSS confirmation and institutional risk controls."
