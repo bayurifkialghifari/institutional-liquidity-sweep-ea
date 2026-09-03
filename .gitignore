@@ -1,0 +1,18 @@
+# MetaTrader compiled output and runtime artifacts
+*.ex5
+*.log
+*.dat
+*.tmp
+
+# Local editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# LazyCodex local project metadata
+.codegraph
+
+# Local MCP configuration contains authentication headers
+.mcp.json
+.codex/
