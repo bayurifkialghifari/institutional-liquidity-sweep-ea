@@ -1,5 +1,5 @@
 #property copyright "Institutional Liquidity Sweep EA"
-#property version   "1.00"
+#property version   "1.10"
 #property strict
 #property description "Asian session liquidity sweep with MSS confirmation and institutional risk controls."
 
@@ -26,7 +26,12 @@ enum ENUM_SYMBOL_PROFILE
    PROFILE_CUSTOM=1,
    PROFILE_XAUUSD=2,
    PROFILE_EURUSD=3,
-   PROFILE_USDJPY=4
+   PROFILE_USDJPY=4,
+   PROFILE_GBPUSD=5,
+   PROFILE_AUDUSD=6,
+   PROFILE_NZDUSD=7,
+   PROFILE_USDCAD=8,
+   PROFILE_USDCHF=9
   };
 
 enum ENUM_LOCK_REASON
@@ -315,6 +320,71 @@ void LoadEffectiveConfig()
       g_config.mss_expiry_bars=4;
       g_config.profile_name="USDJPY_CONSERVATIVE";
      }
+   else if(profile==PROFILE_GBPUSD)
+     {
+      g_config.signal_tf=PERIOD_M5;
+      g_config.trading_session=LONDON_AND_NY;
+      g_config.stop_loss_pips=25;
+      g_config.take_profit_pips=50;
+      g_config.max_spread_pips=3;
+      g_config.sweep_buffer_pips=1.0;
+      g_config.swing_strength=2;
+      g_config.swing_lookback=16;
+      g_config.mss_expiry_bars=6;
+      g_config.profile_name="GBPUSD_CONSERVATIVE";
+     }
+   else if(profile==PROFILE_AUDUSD)
+     {
+      g_config.signal_tf=PERIOD_M5;
+      g_config.trading_session=LONDON_AND_NY;
+      g_config.stop_loss_pips=20;
+      g_config.take_profit_pips=40;
+      g_config.max_spread_pips=3;
+      g_config.sweep_buffer_pips=1.0;
+      g_config.swing_strength=2;
+      g_config.swing_lookback=16;
+      g_config.mss_expiry_bars=6;
+      g_config.profile_name="AUDUSD_CONSERVATIVE";
+     }
+   else if(profile==PROFILE_NZDUSD)
+     {
+      g_config.signal_tf=PERIOD_M5;
+      g_config.trading_session=LONDON_AND_NY;
+      g_config.stop_loss_pips=20;
+      g_config.take_profit_pips=40;
+      g_config.max_spread_pips=3;
+      g_config.sweep_buffer_pips=1.0;
+      g_config.swing_strength=2;
+      g_config.swing_lookback=16;
+      g_config.mss_expiry_bars=6;
+      g_config.profile_name="NZDUSD_CONSERVATIVE";
+     }
+   else if(profile==PROFILE_USDCAD)
+     {
+      g_config.signal_tf=PERIOD_M5;
+      g_config.trading_session=LONDON_AND_NY;
+      g_config.stop_loss_pips=25;
+      g_config.take_profit_pips=50;
+      g_config.max_spread_pips=3;
+      g_config.sweep_buffer_pips=1.0;
+      g_config.swing_strength=2;
+      g_config.swing_lookback=16;
+      g_config.mss_expiry_bars=6;
+      g_config.profile_name="USDCAD_CONSERVATIVE";
+     }
+   else if(profile==PROFILE_USDCHF)
+     {
+      g_config.signal_tf=PERIOD_M5;
+      g_config.trading_session=LONDON_AND_NY;
+      g_config.stop_loss_pips=20;
+      g_config.take_profit_pips=40;
+      g_config.max_spread_pips=3;
+      g_config.sweep_buffer_pips=1.0;
+      g_config.swing_strength=2;
+      g_config.swing_lookback=16;
+      g_config.mss_expiry_bars=6;
+      g_config.profile_name="USDCHF_CONSERVATIVE";
+     }
    else
       PrintFormat("No automatic profile for %s; CUSTOM inputs will be used.",_Symbol);
   }
@@ -326,6 +396,11 @@ ENUM_SYMBOL_PROFILE DetectSymbolProfile()
    if(StringFind(symbol,"XAUUSD")>=0) return(PROFILE_XAUUSD);
    if(StringFind(symbol,"EURUSD")>=0) return(PROFILE_EURUSD);
    if(StringFind(symbol,"USDJPY")>=0) return(PROFILE_USDJPY);
+   if(StringFind(symbol,"GBPUSD")>=0) return(PROFILE_GBPUSD);
+   if(StringFind(symbol,"AUDUSD")>=0) return(PROFILE_AUDUSD);
+   if(StringFind(symbol,"NZDUSD")>=0) return(PROFILE_NZDUSD);
+   if(StringFind(symbol,"USDCAD")>=0) return(PROFILE_USDCAD);
+   if(StringFind(symbol,"USDCHF")>=0) return(PROFILE_USDCHF);
    return(PROFILE_CUSTOM);
   }
 

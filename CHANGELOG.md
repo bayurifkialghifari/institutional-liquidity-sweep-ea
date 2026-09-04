@@ -4,6 +4,11 @@ Semua perubahan penting project dicatat di file ini. Format versi mengikuti Sema
 
 ## [Unreleased]
 
+### Added
+
+- Auto-profile konservatif untuk GBPUSD, AUDUSD, NZDUSD, USDCAD, dan USDCHF pada M5 sesi London + New York.
+- Deteksi PROFILE_AUTO untuk symbol major forex baru, termasuk prefix/suffix broker.
+
 ### Planned
 
 - Hasil optimasi dan forward-test per broker dapat ditambahkan sebagai preset terpisah tanpa mengubah risk engine.

@@ -35,6 +35,12 @@ EA MetaTrader 5 ini memperdagangkan sweep high/low sesi Asia yang dikonfirmasi o
 2. Profile otomatis memakai M15 dan hanya sesi London untuk mengurangi sinyal berulang.
 3. Karena pair JPY umumnya tiga digit, satu pip dihitung sebagai 10 points oleh EA. SL 20 berarti sekitar `0.20` pada harga USDJPY.
 
+### Major forex tambahan
+
+Dengan InpUseAutoPairProfile aktif dan InpSymbolProfile pada PROFILE_AUTO, EA juga mengenali GBPUSD, AUDUSD, NZDUSD, USDCAD, dan USDCHF, termasuk suffix/prefix broker. Pasang satu chart per pair dan gunakan magic unik, misalnya GBPUSD 1004, AUDUSD 1005, NZDUSD 1006, USDCAD 1007, dan USDCHF 1008.
+
+Semua profile ini memakai M5 serta sesi London + New York. GBPUSD dan USDCAD memakai SL 25 / TP 50 pips; AUDUSD, NZDUSD, dan USDCHF memakai SL 20 / TP 40 pips. Semua memiliki spread guard 3 pips dan tetap perlu diuji terhadap spread broker sebelum digunakan live.
+
 Untuk semua pair, nilai profit target dan loss limit adalah per kombinasi symbol+magic, bukan batas seluruh akun. Bila ingin batas akun global, gunakan risk manager terpisah.
 
 ## Cara kerja entry
@@ -59,6 +65,11 @@ Dengan `InpUseAutoPairProfile=true` dan `InpSymbolProfile=PROFILE_AUTO`, suffix/
 | XAUUSD | M15 | London + New York | 300 pips | 600 pips | 50 pips | 20 pips |
 | EURUSD | M5 | London + New York | 20 pips | 40 pips | 2 pips | 1 pip |
 | USDJPY | M15 | London | 20 pips | 40 pips | 2 pips | 1 pip |
+| GBPUSD | M5 | London + New York | 25 pips | 50 pips | 3 pips | 1 pip |
+| AUDUSD | M5 | London + New York | 20 pips | 40 pips | 3 pips | 1 pip |
+| NZDUSD | M5 | London + New York | 20 pips | 40 pips | 3 pips | 1 pip |
+| USDCAD | M5 | London + New York | 25 pips | 50 pips | 3 pips | 1 pip |
+| USDCHF | M5 | London + New York | 20 pips | 40 pips | 3 pips | 1 pip |
 
 Definisi pip mengikuti digits symbol: symbol 3/5 digit memakai 10 points per pip; symbol lain memakai 1 point per pip. Pada XAUUSD dua digit, 300 pips biasanya berarti pergerakan harga `3.00`. Periksa spesifikasi symbol broker sebelum live.
 
